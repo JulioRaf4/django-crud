@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <div class="container">
+        <div class="header">Nada</div>
+    </div>
+    <div class="container p-4">
+        <div class="row">
+            <div>
+                <table class="table">
+                    <thead class="thead bg-dark-subtle">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Twitter</th>
+                            <th scope="col">Github</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% for pessoa in pessoas %}
+                            <th scope="row">{{ pessoa.id }}</th>
+                            <td>{{ pessoa.name }}.</td>
+                            <td>@twitter</td>
+                            <td>@github</td>
+                            <td>
+                            <a class="btn bg-secondary" href="{% url 'edit' pessoa.id %}">Edit</a>
+                            <a class="btn bg-danger" href="{% url 'delete' pessoa.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="container">
+                    <div class="mb-3">
+                        <form class="form-label" action="{% url 'salvar' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" class="form-control w-50" id="exampleFormControlInput1" name="name" />
+                            <button type="submit" class="btn btn-primary p-md-1 m-2">
+                                {% csrf_token %}
+                                Save
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
