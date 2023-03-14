@@ -6,3 +6,12 @@ class Pessoa(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+class Registro(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    cpf = models.IntegerField()
+
+    def __str__(self) -> str:
+        return self.name
