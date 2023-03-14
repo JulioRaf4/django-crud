@@ -1,3 +1,4 @@
-# a little sandbox
+# A crud building in Python
 
-# Basic CRUD until now
+Crud simple project building in python and Django with Html and css using bootstrap.
+
