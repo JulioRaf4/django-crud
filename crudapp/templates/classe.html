@@ -1,0 +1,54 @@
+{% extends "base.html" %}{% block contents %}
+<!DOCTYPE html>
+<div class="container p-4">
+  <div class="row">
+    <div>
+      <table class="table">
+        <thead class="thead bg-dark-subtle">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Twitter</th>
+            <th scope="col">Github</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for pessoa in pessoas %}
+            <th scope="row">{{ pessoa.id }}</th>
+            <td>{{ pessoa.name }}.</td>
+            <td>@twitter</td>
+            <td>@github</td>
+            <td>
+              <a class="btn bg-secondary" href="{% url 'edit' pessoa.id %}"
+                >Edit</a
+              >
+              <a class="btn bg-danger" href="{% url 'delete' pessoa.id %}"
+                >Delete</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="container">
+        <div class="mb-3">
+          <form class="form-label" action="{% url 'salvar' %}" method="POST">
+            {% csrf_token %}
+            <input
+              type="text"
+              class="form-control w-50"
+              id="exampleFormControlInput1"
+              name="name"
+            />
+            <button type="submit" class="btn btn-primary p-md-1 m-2">
+              {% csrf_token %} Save
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

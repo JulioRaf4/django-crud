@@ -6,7 +6,12 @@ from .models import Pessoa
 
 def home(request):
     pessoas = Pessoa.objects.all()
-    return render(request, "home.html", {'pessoas': pessoas})
+    return render(request, "home.html")
+
+
+def classe(request):
+    pessoas = Pessoa.objects.all()
+    return render(request, "classe.html", {'pessoas': pessoas})
 
 
 def salvar(request):
