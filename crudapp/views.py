@@ -17,7 +17,7 @@ def classe(request):
 def salvar(request):
     vname = request.POST.get("name")
     vemail = request.POST.get("email")
-    vdate = request.POST.get("date")
+    vdate = request.POST.get("bornDate")
     vcpf = request.POST.get("cpf")
     Pessoa.objects.create(name=vname, email=vemail, bornDate=vdate, cpf=vcpf)
     pessoas = Pessoa.objects.all()
