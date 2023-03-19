@@ -16,10 +16,12 @@
             <form class="form-label" action="{% url 'update' pessoa.id %}" method="POST">
                 {% csrf_token %}
                 <input type="text" class="form-control w-50" id="exampleFormControlInput1" name="name" value="{{ pessoa.name }}"/>
-                <button type="submit" class="btn btn-primary p-md-1 m-2">
+                <button type="submit" class="btn btn-primary m-1">
                     {% csrf_token %}
                     Update
-                </button>
+                </button><a class="btn bg-danger m-1" href="{% url 'delete' pessoa.id %}"
+                >Delete</a
+              >
             </form>
         </div>
     </div>

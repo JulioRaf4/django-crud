@@ -16,7 +16,10 @@ def classe(request):
 
 def salvar(request):
     vname = request.POST.get("name")
-    Pessoa.objects.create(name=vname)
+    vemail = request.POST.get("email")
+    vdate = request.POST.get("date")
+    vcpf = request.POST.get("cpf")
+    Pessoa.objects.create(name=vname, email=vemail, bornDate=vdate, cpf=vcpf)
     pessoas = Pessoa.objects.all()
     return render(request, "home.html", {'pessoas': pessoas})
 
@@ -31,10 +34,10 @@ def update(request, id):
     pessoa = Pessoa.objects.get(id=id)
     pessoa.name = vname
     pessoa.save()
-    return redirect(home)
+    return redirect(classe)
 
 
 def delete(request, id):
     pessoa = Pessoa.objects.get(id=id)
     pessoa.delete()
-    return redirect(home)
+    return redirect(classe)
