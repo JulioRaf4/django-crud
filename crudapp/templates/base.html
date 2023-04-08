@@ -40,7 +40,13 @@
         </div>
       </nav>
       <!-- Block contents -->
-      {% block contents %} {% endblock %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-danger w-50 center text-center p-1 m-2">{{message}}</div>
+        {% endfor %}
+      {% endif %} 
+      {% block contents %} 
+      {% endblock %}
 
       <!-- Footer -->
       {% block footer %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .models import Pessoa
+from django.contrib import messages
 # Create your views here.
 
 
@@ -22,8 +23,9 @@ def salvar(request):
     if vname and vemail and vdate and vcpf:
         Pessoa.objects.create(name=vname, email=vemail, bornDate=vdate, cpf=vcpf)
         pessoas = Pessoa.objects.all()
-        return render(request, "home.html", {'pessoas': pessoas})
+        return render(request, "classe.html", {'pessoas': pessoas})
     else:
+        messages.error(request, "Erro ao criar form")
         return redirect(home)
 
 def edit(request, id):
