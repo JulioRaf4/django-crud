@@ -19,10 +19,12 @@ def salvar(request):
     vemail = request.POST.get("email")
     vdate = request.POST.get("bornDate")
     vcpf = request.POST.get("cpf")
-    Pessoa.objects.create(name=vname, email=vemail, bornDate=vdate, cpf=vcpf)
-    pessoas = Pessoa.objects.all()
-    return render(request, "home.html", {'pessoas': pessoas})
-
+    if vname and vemail and vdate and vcpf:
+        Pessoa.objects.create(name=vname, email=vemail, bornDate=vdate, cpf=vcpf)
+        pessoas = Pessoa.objects.all()
+        return render(request, "home.html", {'pessoas': pessoas})
+    else:
+        return redirect(home)
 
 def edit(request, id):
     pessoa = Pessoa.objects.get(id=id)
