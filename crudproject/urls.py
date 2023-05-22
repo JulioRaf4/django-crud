@@ -19,4 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('crudapp.urls')),
+    path("", include('loginsso.urls')),
+    
 ]

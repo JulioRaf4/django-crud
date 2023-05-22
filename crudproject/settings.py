@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crudapp', #new
+    'django_google_sso',  # Add django_google_sso
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,19 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GOOGLE_SSO_CLIENT_ID = "109264889967-3evd267bcvlcsq6o5gh8flo26l9clod3.apps.googleusercontent.com"
+GOOGLE_SSO_CLIENT_SECRET = "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"
+GOOGLE_SSO_PROJECT_ID = "myprojectsso-387117"
+
+GOOGLE_SSO_ALLOWABLE_DOMAINS = ["@gedu.demo.colaborativaeduc.com.br"]
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    ...
+]
+
