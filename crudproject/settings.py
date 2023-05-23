@@ -131,10 +131,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-GOOGLE_SSO_CLIENT_ID = "109264889967-3evd267bcvlcsq6o5gh8flo26l9clod3.apps.googleusercontent.com"
-GOOGLE_SSO_CLIENT_SECRET = "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"
-GOOGLE_SSO_PROJECT_ID = "myprojectsso-387117"
-
 GOOGLE_SSO_ALLOWABLE_DOMAINS = ["@gedu.demo.colaborativaeduc.com.br"]
 
 INSTALLED_APPS +=[
@@ -147,17 +143,3 @@ INSTALLED_APPS +=[
 
 
 SITE_ID = 1
-
-# Provider specific settings
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
-        'APP': {
-            'client_id': '123',
-            'secret': '456',
-            'key': ''
-        }
-    }
-}
