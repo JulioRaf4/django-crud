@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .models import Pessoa
 from django.contrib import messages
-# Create your views here.
+from django.views.generic import ListView
 
 
 def home(request):
@@ -21,12 +21,14 @@ def salvar(request):
     vdate = request.POST.get("bornDate")
     vcpf = request.POST.get("cpf")
     if vname and vemail and vdate and vcpf:
-        Pessoa.objects.create(name=vname, email=vemail, bornDate=vdate, cpf=vcpf)
+        Pessoa.objects.create(name=vname, email=vemail,
+                              bornDate=vdate, cpf=vcpf)
         pessoas = Pessoa.objects.all()
         return render(request, "classe.html", {'pessoas': pessoas})
     else:
         messages.error(request, "Erro ao criar form")
         return redirect(home)
+
 
 def edit(request, id):
     pessoa = Pessoa.objects.get(id=id)
@@ -45,3 +47,15 @@ def delete(request, id):
     pessoa = Pessoa.objects.get(id=id)
     pessoa.delete()
     return redirect(classe)
+
+
+## GENERIC VIEWS ##
+
+class PessoaListView(ListView):
+    model = Pessoa
+    template_name = 'classe.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["pessoas"] = self.model.objects.all()
+        return context

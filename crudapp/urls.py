@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, salvar, edit, update, delete, classe
+from .views import home, salvar, edit, update, delete, classe, PessoaListView
 
 urlpatterns = [
     path("", home),
@@ -8,4 +8,8 @@ urlpatterns = [
     path("edit/<int:id>", edit, name="edit"),
     path("update/<int:id>", update, name="update"),
     path("delete/<int:id>", delete, name="delete"),
+]
+
+urlpatterns += [
+    path("pessoa/", PessoaListView.as_view()),
 ]
