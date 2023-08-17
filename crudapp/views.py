@@ -1,3 +1,6 @@
+from django.urls import reverse_lazy
+from .forms import PessoaForm
+from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .models import Pessoa
@@ -59,3 +62,10 @@ class PessoaListView(ListView):
         context = super().get_context_data(**kwargs)
         context["pessoas"] = self.model.objects.all()
         return context
+
+
+class PessoaCreateView(CreateView):
+    model = Pessoa
+    form_class = PessoaForm
+    template_name = 'pessoa_form.html'
+    success_url = reverse_lazy('classe')

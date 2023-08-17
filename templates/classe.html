@@ -53,8 +53,13 @@
   <body>
     {% block contents %}
     <div class="container">
-      <h1>Visualização de pessoas</h1>
-      <table class="table">
+      <div class="container m-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Visualização de pessoas</h2>
+          <button type="button" class="btn btn-warning" href="{% url 'pessoa_create' %}">Adicionar Pessoa</button>
+        </div>
+      </div>
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -73,6 +78,7 @@
             <td>{{ pessoa.email }}</td>
             <td>{{ pessoa.bornDate }}</td>
             <td>{{ pessoa.cpf }}</td>
+            <td><a class="btn btn-info m-1" href="{% url 'edit' pessoa.id %}">Edit</a><a class="btn btn-danger m-1" href="{% url 'delete' pessoa.id %}">Delete</a></td>
           </tr>
           {% endfor %}
         </tbody>

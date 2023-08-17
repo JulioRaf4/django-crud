@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crudapp', #new
+    'crudapp',  # new
 
 ]
 
@@ -133,7 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 GOOGLE_SSO_ALLOWABLE_DOMAINS = ["@gedu.demo.colaborativaeduc.com.br"]
 
-INSTALLED_APPS +=[
+INSTALLED_APPS += [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
