@@ -78,7 +78,9 @@
             <td>{{ pessoa.email }}</td>
             <td>{{ pessoa.bornDate }}</td>
             <td>{{ pessoa.cpf }}</td>
-            <td><a class="btn btn-info m-1" href="{% url 'edit' pessoa.id %}">Edit</a><a class="btn btn-danger m-1" href="{% url 'delete' pessoa.id %}">Delete</a></td>
+            <td>
+                <a class="btn btn-info m-1" href="{% url 'pessoa_update' %}">Edit</a>
+                <a class="btn btn-danger m-1" href="{% url 'delete' pessoa.id %}">Delete</a></td>
           </tr>
           {% endfor %}
         </tbody>

@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-!lu6c^!3*)ni_+g@h4=g^9y#1ka%94fsj77%0z5nd7iuq!t&c-
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CORS_ORIGIN_WHITELIST = ('https://literate-chainsaw-vj6vj9w99gghwv4p-8000.app.github.dev/')
+CSRF_TRUSTED_ORIGINS = 'https://literate-chainsaw-vj6vj9w99gghwv4p-8000.app.github.dev/'
 
 # Application definition
 

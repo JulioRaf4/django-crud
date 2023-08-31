@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from .forms import PessoaForm
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .models import Pessoa
@@ -11,11 +11,6 @@ from django.views.generic import ListView
 def home(request):
     pessoas = Pessoa.objects.all()
     return render(request, "home.html")
-
-
-def classe(request):
-    pessoas = Pessoa.objects.all()
-    return render(request, "classe.html", {'pessoas': pessoas})
 
 
 def salvar(request):
@@ -49,14 +44,14 @@ def update(request, id):
 def delete(request, id):
     pessoa = Pessoa.objects.get(id=id)
     pessoa.delete()
-    return redirect(classe)
+    return redirect(PessoaListView)
 
 
 ## GENERIC VIEWS ##
 
 class PessoaListView(ListView):
     model = Pessoa
-    template_name = 'classe.html'
+    template_name = 'pessoa/pessoa_home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -67,5 +62,11 @@ class PessoaListView(ListView):
 class PessoaCreateView(CreateView):
     model = Pessoa
     form_class = PessoaForm
-    template_name = 'pessoa_form.html'
+    template_name = 'pessoa/pessoa_form.html'
     success_url = reverse_lazy('classe')
+
+
+class PessoaUpdateView(UpdateView):
+    model = Pessoa
+    fields = "__all__"
+    template_name = 'pessoa/pessoa_form.html'

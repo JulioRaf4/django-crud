@@ -1,9 +1,8 @@
 from django.urls import path
-from .views import home, salvar, edit, update, delete, classe, PessoaListView, PessoaCreateView
+from .views import *
 
 urlpatterns = [
     path("", home),
-    path("classe/", classe, name="classe"),
     path("salvar/", salvar, name="salvar"),
     path("edit/<int:id>", edit, name="edit"),
     path("update/<int:id>", update, name="update"),
@@ -13,4 +12,5 @@ urlpatterns = [
 urlpatterns += [
     path("pessoa/", PessoaListView.as_view()),
     path('pessoa/create/', PessoaCreateView.as_view(), name='pessoa_create'),
+    path('pessoa/update/', PessoaUpdateView.as_view(), name='pessoa_update'),
 ]
