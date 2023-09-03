@@ -8,46 +8,11 @@ from django.contrib import messages
 from django.views.generic import ListView
 
 
-def home(request):
-    pessoas = Pessoa.objects.all()
-    return render(request, "home.html")
-
-
-def salvar(request):
-    vname = request.POST.get("name")
-    vemail = request.POST.get("email")
-    vdate = request.POST.get("bornDate")
-    vcpf = request.POST.get("cpf")
-    if vname and vemail and vdate and vcpf:
-        Pessoa.objects.create(name=vname, email=vemail,
-                              bornDate=vdate, cpf=vcpf)
-        pessoas = Pessoa.objects.all()
-        return render(request, "classe.html", {'pessoas': pessoas})
-    else:
-        messages.error(request, "Erro ao criar form")
-        return redirect(home)
-
-
-def edit(request, id):
-    pessoa = Pessoa.objects.get(id=id)
-    return render(request, "edit.html", {'pessoa': pessoa})
-
-
-def update(request, id):
-    vname = request.POST.get("name")
-    pessoa = Pessoa.objects.get(id=id)
-    pessoa.name = vname
-    pessoa.save()
-    return redirect(classe)
-
-
-def delete(request, id):
-    pessoa = Pessoa.objects.get(id=id)
-    pessoa.delete()
-    return redirect(PessoaListView)
-
-
 ## GENERIC VIEWS ##
+
+def index(request):
+    return render(request, 'base.html')
+
 
 class PessoaListView(ListView):
     model = Pessoa
@@ -63,10 +28,16 @@ class PessoaCreateView(CreateView):
     model = Pessoa
     form_class = PessoaForm
     template_name = 'pessoa/pessoa_form.html'
-    success_url = reverse_lazy('classe')
+    success_url = reverse_lazy('pessoa')
 
 
 class PessoaUpdateView(UpdateView):
     model = Pessoa
     fields = "__all__"
     template_name = 'pessoa/pessoa_form.html'
+    success_url = reverse_lazy("pessoa")
+
+class PessoaDeleteView(DeleteView):
+    model = Pessoa
+    template_name = 'pessoa/pessoa_confirm_delete.html'
+    success_url = reverse_lazy("pessoa")
