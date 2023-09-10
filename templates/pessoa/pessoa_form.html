@@ -2,7 +2,7 @@
 
 {% block contents %}
 <div class="container mt-4">
-  <h2>Preencha os detalhes da Pessoa</h2>
+  <h2 class="mb-4">Preencha os detalhes da Pessoa</h2>
   <form method="post" class="needs-validation" novalidate>
     {% csrf_token %}
     
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 ">
       <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
       {{ form.email }}
     </div>
@@ -29,7 +29,9 @@
       {{ form.cpf }}
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <div class="mb-4">
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
   </form>
 </div>
 {% endblock %}
